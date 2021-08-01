@@ -15,28 +15,26 @@ public class Main {
         ExpressionParsingServiceImp exps = new ExpressionParsingServiceImp();
         SolvingServiceImp ss = new SolvingServiceImp();
 
-        String line = null;
+        String line = "";
         ArrayList<String> expression;
         String result = null;
         line = cs.ReadExpression();
+        boolean isValid = vs.isValid(line);
 
-        while (!vs.isValid(line)) {
-            try {
-                expression = exps.ParseExpression(line);
-                try{
+        while (!isValid || result == null) {
+            if (!isValid) {
+                line = cs.ReadExpression();
+                isValid = vs.isValid(line);
+            } else {
+                try {
+                    expression = exps.ParseExpression(line);
                     result = ss.solve(expression);
-                } catch (ArithmeticException ex){
+                } catch (ArithmeticException ex) {
                     System.err.println("Error: Divide by zero, type valid expression:");
-                    line = cs.ReadExpression();;
+                    line = cs.ReadExpression();
                 }
-            } catch (Exception ex){
-                System.err.println("Error: Type valid expression:");
-                line = cs.ReadExpression();;
             }
         }
         cs.write(line + " = " + result);
-
-
-	// write your code here
     }
 }

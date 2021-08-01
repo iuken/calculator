@@ -3,17 +3,18 @@ package ru.aziatsev.alexandr.services;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Stack;
+import java.util.regex.Pattern;
 
 public class SolvingServiceImp implements SolvingService {
     @Override
-    public String solve(List<String> list) throws ArithmeticException{
+    public String solve(List<String> list) throws ArithmeticException {
         Stack<String> stack = new Stack<>();
         for (String s : list) {
-            if (s.matches("\\d+")) {
+            if (s.matches("\\d+\\.\\d+|\\d+")) {
                 stack.push(s);
             } else {
-                double num1 = Double.parseDouble(stack.pop());
                 double num2 = Double.parseDouble(stack.pop());
+                double num1 = Double.parseDouble(stack.pop());
                 double result = 0;
                 switch (s) {
                     case "+":
@@ -23,6 +24,9 @@ public class SolvingServiceImp implements SolvingService {
                         result = num1 - num2;
                         break;
                     case "/":
+                        if (num2 - 0 < Double.MIN_VALUE){
+                            throw new ArithmeticException();
+                        }
                         result = num1 / num2;
                         break;
                     case "*":
@@ -35,9 +39,4 @@ public class SolvingServiceImp implements SolvingService {
         return stack.pop();
     }
 
-    public String solve (List<String> list, int scale){
-        String line = this.solve(list);
-        BigDecimal result = new BigDecimal(line);
-        return String.valueOf(result.setScale(scale));
-    }
 }

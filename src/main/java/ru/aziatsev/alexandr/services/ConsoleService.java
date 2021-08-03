@@ -3,5 +3,5 @@ package ru.aziatsev.alexandr.services;
 public interface ConsoleService {
     String ReadExpression();
 
-    void write(String line);
+    void Write(String line);
 }

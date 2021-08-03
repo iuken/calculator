@@ -23,7 +23,7 @@ public class ConsoleServiceImp implements ConsoleService {
     }
 
     @Override
-    public void write(String line) {
-        System.out.println(line);
+    public void Write(String line) {
+        System.out.print(line);
     }
 }

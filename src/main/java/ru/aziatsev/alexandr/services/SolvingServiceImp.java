@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class SolvingServiceImp implements SolvingService {
     @Override
-    public String solve(List<String> list) throws ArithmeticException {
+    public String Solve(List<String> list) throws ArithmeticException {
         Stack<String> stack = new Stack<>();
         for (String s : list) {
             if (s.matches("\\d+\\.\\d+|\\d+")) {

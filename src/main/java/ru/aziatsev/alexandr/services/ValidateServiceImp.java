@@ -6,7 +6,7 @@ public class ValidateServiceImp implements ValidateService {
 
 
     @Override
-    public boolean isValid(String expression) {
+    public boolean IsValid(String expression) {
         if (expression == null || expression.equals("")) {
             System.err.println("Error: expression is empty, type correct expression:");
             return false;

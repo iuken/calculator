@@ -19,22 +19,22 @@ public class Main {
         ArrayList<String> expression;
         String result = null;
         line = cs.ReadExpression();
-        boolean isValid = vs.isValid(line);
+        boolean isValid = vs.IsValid(line);
 
         while (!isValid || result == null) {
             if (!isValid) {
                 line = cs.ReadExpression();
-                isValid = vs.isValid(line);
+                isValid = vs.IsValid(line);
             } else {
                 try {
                     expression = exps.ParseExpression(line);
-                    result = ss.solve(expression);
+                    result = ss.Solve(expression);
                 } catch (ArithmeticException ex) {
                     System.err.println("Error: Divide by zero, type valid expression:");
                     line = cs.ReadExpression();
                 }
             }
         }
-        cs.write(line + " = " + result);
+        cs.Write(line + " = " + result);
     }
 }

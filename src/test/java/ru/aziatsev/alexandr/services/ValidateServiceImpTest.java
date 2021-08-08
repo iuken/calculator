@@ -1,17 +1,25 @@
 package ru.aziatsev.alexandr.services;
 
-import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ValidateServiceImpTest {
 
+    static private ValidateServiceImp vs;
+
+    @BeforeAll
+    static private void setUp(){
+        vs = new ValidateServiceImp();
+    }
 
     @Test
     @DisplayName("Empty input")
     public void TestEmptyInput() {
-        ValidateServiceImp vs = new ValidateServiceImp();
         assertFalse(vs.IsValid(""));
     }
     @Test

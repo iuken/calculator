@@ -25,7 +25,7 @@ public class SolvingServiceImp implements SolvingService {
                         break;
                     case "/":
                         if (num2 - 0 < Double.MIN_VALUE){
-                            throw new ArithmeticException();
+                            throw new IllegalArgumentException();
                         }
                         result = num1 / num2;
                         break;
